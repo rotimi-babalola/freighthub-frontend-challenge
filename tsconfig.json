@@ -11,7 +11,7 @@
     ],
     "removeComments": true,
     "allowSyntheticDefaultImports": false,
-    "jsx": "react",
+    "tsx": "react",
     "allowJs": true,
     "baseUrl": "./",
     "paths": {
