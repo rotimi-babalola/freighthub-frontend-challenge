@@ -19,6 +19,7 @@
         "client/src/components/*"
       ],
     },
-    "strict": true
+    "strict": true,
+    "experimentalDecorators": true
   }
 }

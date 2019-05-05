@@ -14,8 +14,12 @@ module.exports = {
   plugins: [
     new webpack.ProgressPlugin(),
     new HtmlWebpackPlugin({
-      template: './client/index.html',
       inject: 'body',
+      template: './client/index.html',
+    }),
+    new webpack.DefinePlugin({
+      API_URL: JSON.stringify(process.env.API_URL),
+      NODE_ENV: JSON.stringify(process.env.NODE_ENV),
     }),
   ],
   module: {
@@ -28,9 +32,6 @@ module.exports = {
         test: /\.scss$/,
         use: [
           {
-            loader: 'style-loader',
-          },
-          {
             loader: 'css-loader',
           },
           {
@@ -38,6 +39,9 @@ module.exports = {
             options: {
               sourceMap: true,
             },
+          },
+          {
+            loader: 'style-loader',
           },
         ],
       },
