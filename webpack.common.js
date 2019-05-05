@@ -1,21 +1,21 @@
-const path = require('path');
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require("path");
+const webpack = require("webpack");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: './client/src/index.tsx',
+  entry: "./client/src/index.tsx",
   output: {
-    path: path.join(__dirname, './client/dist'),
-    filename: '[name].chunk.js',
+    path: path.join(__dirname, "./client/dist"),
+    filename: "[name].chunk.js",
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js'],
+    extensions: [".ts", ".tsx", ".js"],
   },
   plugins: [
     new webpack.ProgressPlugin(),
     new HtmlWebpackPlugin({
-      inject: 'body',
-      template: './client/index.html',
+      inject: "body",
+      template: "./client/index.html",
     }),
     new webpack.DefinePlugin({
       API_URL: JSON.stringify(process.env.API_URL),
@@ -26,22 +26,22 @@ module.exports = {
     rules: [
       {
         test: /\.tsx?$/,
-        loader: 'awesome-typescript-loader',
+        loader: "awesome-typescript-loader",
       },
       {
         test: /\.scss$/,
         use: [
           {
-            loader: 'css-loader',
+            loader: "css-loader",
           },
           {
-            loader: 'sass-loader',
+            loader: "sass-loader",
             options: {
               sourceMap: true,
             },
           },
           {
-            loader: 'style-loader',
+            loader: "style-loader",
           },
         ],
       },
