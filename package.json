@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "description": "FreightHub Frontend Coding Challenge",
   "main": "index.js",
-  "repository": "git@github.com:freight-hub/freighthub-frontend-challenge.git",
-  "author": "FreightHub Recruiting Team",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rotimi-babalola/freighthub-frontend-challenge.git"
+  },
+  "author": "Rotimi Babalola",
   "license": "MIT",
   "scripts": {
     "start": "json-server db.json"
