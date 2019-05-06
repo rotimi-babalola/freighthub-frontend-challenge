@@ -12,7 +12,8 @@
         "member-access": [true, "no-public"],
         "jsx-no-multiline-js": false,
         "object-literal-sort-keys": false,
-        "arrow-return-shorthand": true
+        "arrow-return-shorthand": true,
+        "semicolon": false
     },
     "rulesDirectory": [],
     "linterOptions": {
