@@ -1,7 +1,10 @@
 import { uniqueId } from 'lodash';
 import { observer } from 'mobx-react';
 import * as React from 'react';
+import ShipmentCard from '../components/ShipmentCard';
 import { ShipmentStore } from '../stores/shipments.store';
+
+import '../styles/shipments.scss';
 
 @observer
 class Shipments extends React.Component<{ store: ShipmentStore }, {}> {
@@ -12,10 +15,11 @@ class Shipments extends React.Component<{ store: ShipmentStore }, {}> {
     }
 
     return (
-      <div>
-        {store.shipments.map(el => (
-          <h1 key={uniqueId()}>{el.name}</h1>
-        ))}
+      <div className="shipments-container">
+        <ShipmentCard />
+        <ShipmentCard />
+        <ShipmentCard />
+        <ShipmentCard />
       </div>
     );
   }
