@@ -18,6 +18,8 @@
       "components/*": [
         "client/src/components/*"
       ],
-    }
+    },
+    "strict": true,
+    "experimentalDecorators": true
   }
 }
