@@ -1,13 +1,18 @@
-import { uniqueId } from 'lodash';
 import { observer } from 'mobx-react';
 import * as React from 'react';
+import Pagination from '../components/Pagination';
 import ShipmentCard from '../components/ShipmentCard';
+import { LIMIT, TOTAL_ITEMS } from '../constants';
+import { IPaginationData } from '../interfaces';
 import { ShipmentStore } from '../stores/shipments.store';
-
 import '../styles/shipments.scss';
 
 @observer
 class Shipments extends React.Component<{ store: ShipmentStore }, {}> {
+  onPageChanged = (paginationData: IPaginationData) => {
+    this.props.store.getShipments(paginationData.currentPage);
+  };
+
   render() {
     const { store } = this.props;
     if (!store.shipments.length) {
@@ -15,20 +20,27 @@ class Shipments extends React.Component<{ store: ShipmentStore }, {}> {
     }
 
     return (
-      <div className="shipments-container">
-        {store.shipments.map(shipment => {
-          return (
-            <ShipmentCard
-              key={uniqueId()}
-              id={shipment.id}
-              name={shipment.name}
-              cargoLength={shipment.cargo.length}
-              total={shipment.total}
-              origin={shipment.origin}
-            />
-          );
-        })}
-      </div>
+      <React.Fragment>
+        <div className="shipments-container">
+          {store.shipments.map(shipment => {
+            return (
+              <ShipmentCard
+                key={shipment.id}
+                id={shipment.id}
+                name={shipment.name}
+                cargoLength={shipment.cargo.length}
+                total={shipment.total}
+                origin={shipment.origin}
+              />
+            );
+          })}
+        </div>
+        <Pagination
+          totalRecords={TOTAL_ITEMS}
+          pageSize={LIMIT}
+          onPageChanged={this.onPageChanged}
+        />
+      </React.Fragment>
     );
   }
 
