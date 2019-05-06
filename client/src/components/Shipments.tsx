@@ -1,4 +1,3 @@
-import { uniqueId } from 'lodash';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import Pagination from '../components/Pagination';
@@ -26,7 +25,7 @@ class Shipments extends React.Component<{ store: ShipmentStore }, {}> {
           {store.shipments.map(shipment => {
             return (
               <ShipmentCard
-                key={uniqueId()}
+                key={shipment.id}
                 id={shipment.id}
                 name={shipment.name}
                 cargoLength={shipment.cargo.length}

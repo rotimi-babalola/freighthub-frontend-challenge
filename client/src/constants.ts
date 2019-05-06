@@ -1,2 +1,2 @@
-export const TOTAL_ITEMS = 31;
+export const TOTAL_ITEMS = 45;
 export const LIMIT = 20;
