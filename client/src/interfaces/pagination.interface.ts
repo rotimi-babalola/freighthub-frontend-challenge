@@ -1,5 +1,5 @@
 export interface IPaginationProps {
-  startingPage: number;
+  startingPage?: number;
   pageSize: number;
   totalRecords: number;
   onPageChanged: (paginationData: IPaginationData) => void;

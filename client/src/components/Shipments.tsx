@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 import * as React from 'react';
 import Pagination from '../components/Pagination';
 import ShipmentCard from '../components/ShipmentCard';
-import { TOTAL_ITEMS } from '../constants';
+import { LIMIT, TOTAL_ITEMS } from '../constants';
 import { IPaginationData } from '../interfaces';
 import { ShipmentStore } from '../stores/shipments.store';
 import '../styles/shipments.scss';
@@ -38,8 +38,7 @@ class Shipments extends React.Component<{ store: ShipmentStore }, {}> {
         </div>
         <Pagination
           totalRecords={TOTAL_ITEMS}
-          pageSize={20}
-          startingPage={1}
+          pageSize={LIMIT}
           onPageChanged={this.onPageChanged}
         />
       </React.Fragment>
