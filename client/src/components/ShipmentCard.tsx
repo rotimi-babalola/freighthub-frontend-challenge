@@ -22,7 +22,9 @@ class ShipmentCard extends React.Component<IShipmentCardProps, {}> {
           >
             {this.getShipmentName(this.props.name)}
           </h3>
-          <p>{this.props.origin}</p>
+          <p className="shipment-card-content__shipment-info">
+            {this.props.origin}
+          </p>
           <p className="shipment-card-content__shipment-info">
             Shipment id:{' '}
             <span className="shipment-card-content__shipment-info-value">

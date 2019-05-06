@@ -6,6 +6,7 @@
   align-items: center;
   transition: box-shadow 0.5s;
   padding: 1rem 1rem 0.5rem;
+  color: #707070;
   &:hover {
     cursor: pointer;
     box-shadow: 0 12px 16px rgba(0, 0, 0, 0.2);
@@ -19,6 +20,8 @@
   
   &__shipment-info {
     font-weight: bolder;
+    margin: 6px 0;
+    font-size: 15px;
   }
   
   &__shipment-info-value {
@@ -26,8 +29,8 @@
   }
 
   &__shipment-name {
-    font-size: 20px;
-    margin-bottom: 10px;
+    font-size: 15px;
+    margin-bottom: 5px;
   }
 }
 

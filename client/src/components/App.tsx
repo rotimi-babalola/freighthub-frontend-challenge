@@ -11,7 +11,7 @@ class App extends React.Component<{}, {}> {
     return (
       <Router>
         <div className="app-container">
-          <h1>FreightHub shipments</h1>
+          <h1 className="heading">FreightHub shipments</h1>
           <Shipments store={shipmentStore} />
         </div>
       </Router>
