@@ -1,11 +1,20 @@
 .shipments-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 300px;
+  grid-auto-rows: 350px;
   grid-gap: 10px;
 }
 
-@media (max-width: 850px) {
+@media (max-width: 950px) {
+  .shipments-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 350px;
+    grid-gap: 10px;
+  }
+}
+
+@media (max-width: 500px) {
   .shipments-container {
     display: block;
   }

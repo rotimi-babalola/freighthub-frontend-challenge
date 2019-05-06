@@ -16,10 +16,18 @@ class Shipments extends React.Component<{ store: ShipmentStore }, {}> {
 
     return (
       <div className="shipments-container">
-        <ShipmentCard />
-        <ShipmentCard />
-        <ShipmentCard />
-        <ShipmentCard />
+        {store.shipments.map(shipment => {
+          return (
+            <ShipmentCard
+              key={uniqueId()}
+              id={shipment.id}
+              name={shipment.name}
+              cargoLength={shipment.cargo.length}
+              total={shipment.total}
+              origin={shipment.origin}
+            />
+          );
+        })}
       </div>
     );
   }
