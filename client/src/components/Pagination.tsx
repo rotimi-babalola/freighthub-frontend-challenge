@@ -9,18 +9,15 @@ class Pagination extends React.Component<IPaginationProps, IPaginationState> {
     super(props);
     this.state = {
       currentPage: 1,
-      pageCount: 1,
+      pageCount: Math.ceil(this.props.totalRecords / this.props.pageSize),
     };
   }
 
   componentDidMount() {
     const startingPage = this.props.startingPage || 1;
-    const pageSize = this.props.pageSize;
-    const pageCount = Math.ceil(this.props.totalRecords / pageSize);
 
     this.setState({
       currentPage: startingPage,
-      pageCount,
     });
   }
 
@@ -40,15 +37,12 @@ class Pagination extends React.Component<IPaginationProps, IPaginationState> {
       pageLimit: this.props.pageSize,
       totalRecords: this.props.totalRecords,
     };
-
     this.setState({ currentPage }, () => onPageChanged(paginationData));
   };
 
   createControls() {
     const pageCount = this.state.pageCount;
     const numberOfPages = range(1, pageCount + 1);
-    // console.log(numberOfPages, '>>>');
-    // console.log(this.state, 'state >>>');
     return numberOfPages.map(pageNumber => {
       const baseClassName = 'pagination-controls__button';
       const activeClassName =
