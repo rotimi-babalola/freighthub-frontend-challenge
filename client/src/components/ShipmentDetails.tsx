@@ -35,12 +35,10 @@ class ShipmentDetails extends React.Component<
   handleSave = () => {
     const shipmentId = this.props.match.params.shipmentId;
     this.props.store.updateName(this.state.shipmentName, shipmentId);
-    this.setState(
-      {
-        isShowing: false,
-      },
-      () => this.props.store.getShipmentDetails(shipmentId),
-    );
+    this.setState({
+      isShowing: false,
+      shipmentName: '',
+    });
   };
 
   openModalHandler = () => {
@@ -64,17 +62,18 @@ class ShipmentDetails extends React.Component<
     return (
       <React.Fragment>
         <h2>
-          {shipment.name}{' '}
-          <span>
-            <i className="fa fa-edit" onClick={this.openModalHandler} />
+          {this.props.store.shipmentName}{' '}
+          <span onClick={this.openModalHandler}>
+            <i className="fa fa-edit" />
           </span>
         </h2>
         <Modal
           show={this.state.isShowing}
           handleClose={this.closeModalHandler}
           handleSave={this.handleSave}
+          showSaveButton={Boolean(this.state.shipmentName)}
         >
-          <h2>{shipment.name}</h2>
+          <h3>Shipment name: {this.props.store.shipmentName}</h3>
           <input
             type="text"
             name="name"
