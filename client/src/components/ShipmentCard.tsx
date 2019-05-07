@@ -10,7 +10,7 @@ class ShipmentCard extends React.Component<IShipmentCardProps, {}> {
       return shipmentName;
     }
     return `${shipmentName.slice(0, 18)}...`;
-  }
+  };
 
   render() {
     return (
@@ -43,7 +43,7 @@ class ShipmentCard extends React.Component<IShipmentCardProps, {}> {
               {this.props.total}
             </span>
           </p>
-          <Link to="/">View shipment</Link>
+          <Link to={`/shipments/${this.props.id}`}>View shipment</Link>
         </div>
       </div>
     );
