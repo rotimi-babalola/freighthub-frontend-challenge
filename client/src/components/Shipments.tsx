@@ -4,12 +4,11 @@ import Pagination from '../components/Pagination';
 import Select from '../components/Select';
 import ShipmentCard from '../components/ShipmentCard';
 import { LIMIT, TOTAL_ITEMS } from '../constants';
-import { IPaginationData } from '../interfaces';
-import { ShipmentStore } from '../stores/shipments.store';
+import { IPaginationData, IShipmentsProps } from '../interfaces';
 import '../styles/shipments.scss';
 
 @observer
-class Shipments extends React.Component<{ store: ShipmentStore }, {}> {
+class Shipments extends React.Component<IShipmentsProps, {}> {
   onPageChanged = (paginationData: IPaginationData) => {
     this.props.store.getShipments(paginationData.currentPage);
   };
@@ -33,6 +32,7 @@ class Shipments extends React.Component<{ store: ShipmentStore }, {}> {
     ) {
       return <p>No results found</p>;
     }
+
     if (this.props.store.searchQuery) {
       return (
         <div className="shipments-container">
@@ -78,6 +78,7 @@ class Shipments extends React.Component<{ store: ShipmentStore }, {}> {
 
     return (
       <React.Fragment>
+        <h1 className="heading">FreightHub shipments</h1>
         <div className="controls-container">
           <p>Total Items: {TOTAL_ITEMS}</p>
           <Select store={this.props.store} />
@@ -90,13 +91,13 @@ class Shipments extends React.Component<{ store: ShipmentStore }, {}> {
           />
         </div>
         {this.renderShipments()}
-        {this.showPagination() && (
+        {
           <Pagination
             totalRecords={TOTAL_ITEMS}
             pageSize={LIMIT}
             onPageChanged={this.onPageChanged}
           />
-        )}
+        }
       </React.Fragment>
     );
   }

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import ShipmentDetails from '../components/ShipmentDetails';
 import Shipments from '../components/Shipments';
+import { shipmentDetailsStore } from '../stores/shipment-details.store';
 import { shipmentStore } from '../stores/shipments.store';
 
 import '../styles/app.scss';
@@ -11,7 +12,6 @@ class App extends React.Component<{}, {}> {
   render() {
     return (
       <div className="app-container">
-        <h1 className="heading">FreightHub shipments</h1>
         <Router>
           <Switch>
             <Route
@@ -25,7 +25,9 @@ class App extends React.Component<{}, {}> {
               exact={true}
               path="/shipments/:shipmentId"
               render={props => {
-                return <ShipmentDetails {...props} />;
+                return (
+                  <ShipmentDetails {...props} store={shipmentDetailsStore} />
+                );
               }}
             />
           </Switch>

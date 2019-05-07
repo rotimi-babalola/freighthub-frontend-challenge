@@ -1,3 +1,5 @@
+import { ShipmentDetailsStore } from '../stores/shipment-details.store';
+import { ShipmentStore } from '../stores/shipments.store';
 import { ICargo } from './cargo.interface';
 import { IService } from './services.interface';
 
@@ -13,4 +15,20 @@ export interface IShipment {
   total: number;
   status: string;
   userId: string;
+}
+
+export interface IShipmentsProps {
+  store: ShipmentStore;
+}
+
+export interface IShipmentDetailsProps {
+  store: ShipmentDetailsStore;
+  match: {
+    isExact: boolean;
+    params: {
+      shipmentId: string;
+    };
+    path: string;
+    url: string;
+  };
 }

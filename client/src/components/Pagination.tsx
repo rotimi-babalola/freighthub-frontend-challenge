@@ -47,6 +47,8 @@ class Pagination extends React.Component<IPaginationProps, IPaginationState> {
   createControls() {
     const pageCount = this.state.pageCount;
     const numberOfPages = range(1, pageCount + 1);
+    // console.log(numberOfPages, '>>>');
+    // console.log(this.state, 'state >>>');
     return numberOfPages.map(pageNumber => {
       const baseClassName = 'pagination-controls__button';
       const activeClassName =
