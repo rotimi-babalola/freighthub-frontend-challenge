@@ -14,20 +14,29 @@ class Shipments extends React.Component<{ store: ShipmentStore }, {}> {
     this.props.store.getShipments(paginationData.currentPage);
   };
 
-  render() {
-    const { store } = this.props;
-    if (!store.shipments.length) {
-      return <h1>Loading...</h1>;
-    }
+  handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    const query = evt.target.value;
+    this.props.store.searchShipments(query);
+  };
 
-    return (
-      <React.Fragment>
-        <div className="controls-container">
-          <Select store={this.props.store} />
-          <input type="text" name="text" id="text" placeholder="Search" />
-        </div>
+  showPagination = () => {
+    if (this.props.store.searchQuery) {
+      return false;
+    }
+    return true;
+  };
+
+  renderShipments = () => {
+    if (
+      this.props.store.searchQuery &&
+      !this.props.store.filteredShipments.length
+    ) {
+      return <p>No results found</p>;
+    }
+    if (this.props.store.searchQuery) {
+      return (
         <div className="shipments-container">
-          {store.shipments.map(shipment => {
+          {this.props.store.filteredShipments.map(shipment => {
             return (
               <ShipmentCard
                 key={shipment.id}
@@ -40,11 +49,54 @@ class Shipments extends React.Component<{ store: ShipmentStore }, {}> {
             );
           })}
         </div>
-        <Pagination
-          totalRecords={TOTAL_ITEMS}
-          pageSize={LIMIT}
-          onPageChanged={this.onPageChanged}
-        />
+      );
+    }
+
+    return (
+      <div className="shipments-container">
+        {this.props.store.shipments.map(shipment => {
+          return (
+            <ShipmentCard
+              key={shipment.id}
+              id={shipment.id}
+              name={shipment.name}
+              cargoLength={shipment.cargo.length}
+              total={shipment.total}
+              origin={shipment.origin}
+            />
+          );
+        })}
+      </div>
+    );
+  };
+
+  render() {
+    const { store } = this.props;
+    if (store.isLoading) {
+      return <h1>Loading...</h1>;
+    }
+
+    return (
+      <React.Fragment>
+        <div className="controls-container">
+          <p>Total Items: {TOTAL_ITEMS}</p>
+          <Select store={this.props.store} />
+          <input
+            type="text"
+            name="text"
+            id="text"
+            placeholder="Search by id"
+            onChange={this.handleChange}
+          />
+        </div>
+        {this.renderShipments()}
+        {this.showPagination() && (
+          <Pagination
+            totalRecords={TOTAL_ITEMS}
+            pageSize={LIMIT}
+            onPageChanged={this.onPageChanged}
+          />
+        )}
       </React.Fragment>
     );
   }

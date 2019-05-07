@@ -11,11 +11,15 @@
   justify-content: flex-end;
   width: 100%;
   align-items: center;
+  & p {
+    margin-right: auto;
+    font-size: large;
+  }
 }
 
 input[type="text"] {
   height: 30px;
-  font-size: large;
+  font-size: medium;
   border: 1px solid #707070;
   padding: 5px;
 }

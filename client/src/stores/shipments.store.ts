@@ -10,9 +10,13 @@ export class ShipmentStore {
   }
 
   @observable shipments: IShipment[] = [];
+  @observable filteredShipments: IShipment[] = [];
+  @observable isLoading: boolean = false;
+  @observable searchQuery?: string;
 
   @action
   getShipments(page: number = 1, limit: number = LIMIT) {
+    this.isLoading = true;
     instance.get(`/shipments?_page=${page}&_limit=${limit}`).then(response => {
       this.shipments = response.data.map((el: IShipment) => {
         return {
@@ -20,6 +24,15 @@ export class ShipmentStore {
           total: Number(el.total),
         };
       });
+      this.isLoading = false;
+    });
+  }
+
+  @action
+  searchShipments(query: string) {
+    this.searchQuery = query;
+    this.filteredShipments = this.shipments.filter(item => {
+      return item.id.toLowerCase().search(query.toLowerCase()) !== -1;
     });
   }
 
