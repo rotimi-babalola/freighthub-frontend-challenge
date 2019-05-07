@@ -11,6 +11,7 @@ import {
   IShipment,
   IShipmentDetailInfoProps,
   IShipmentDetailsProps,
+  IShipmentDetailsState,
   IShipmentsProps,
   IShipmentState,
 } from './shipment.interface';
@@ -28,4 +29,5 @@ export {
   IShipmentDetailsProps,
   IShipmentDetailInfoProps,
   IShipmentState,
+  IShipmentDetailsState,
 };

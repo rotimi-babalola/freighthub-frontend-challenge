@@ -2,15 +2,58 @@ import { uniqueId } from 'lodash';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
+import Modal from '../components/Modal';
 import ShipmentDetailInfo from '../components/ShipmentDetailInfo';
-import { IShipmentDetailsProps } from '../interfaces';
+import { IShipmentDetailsProps, IShipmentDetailsState } from '../interfaces';
+
+import '../styles/shipment-detail.scss';
 
 @observer
-class ShipmentDetails extends React.Component<IShipmentDetailsProps, {}> {
+class ShipmentDetails extends React.Component<
+  IShipmentDetailsProps,
+  IShipmentDetailsState
+> {
+  constructor(props: IShipmentDetailsProps) {
+    super(props);
+    this.state = {
+      isShowing: false,
+      shipmentName: '',
+    };
+  }
+
   componentDidMount() {
     const shipmentId = this.props.match.params.shipmentId;
     this.props.store.getShipmentDetails(shipmentId);
   }
+
+  handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    this.setState({
+      shipmentName: evt.target.value,
+    });
+  };
+
+  handleSave = () => {
+    const shipmentId = this.props.match.params.shipmentId;
+    this.props.store.updateName(this.state.shipmentName, shipmentId);
+    this.setState(
+      {
+        isShowing: false,
+      },
+      () => this.props.store.getShipmentDetails(shipmentId),
+    );
+  };
+
+  openModalHandler = () => {
+    this.setState({
+      isShowing: true,
+    });
+  };
+
+  closeModalHandler = () => {
+    this.setState({
+      isShowing: false,
+    });
+  };
 
   render() {
     const [shipment] = this.props.store.shipment;
@@ -20,7 +63,27 @@ class ShipmentDetails extends React.Component<IShipmentDetailsProps, {}> {
 
     return (
       <React.Fragment>
-        <h2>{shipment.name}</h2>
+        <h2>
+          {shipment.name}{' '}
+          <span>
+            <i className="fa fa-edit" onClick={this.openModalHandler} />
+          </span>
+        </h2>
+        <Modal
+          show={this.state.isShowing}
+          handleClose={this.closeModalHandler}
+          handleSave={this.handleSave}
+        >
+          <h2>{shipment.name}</h2>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            value={this.state.shipmentName}
+            onChange={this.handleChange}
+            placeholder="Enter new shipment name"
+          />
+        </Modal>
         <ShipmentDetailInfo name="Shipment id" value={shipment.id} />
         <ShipmentDetailInfo name="Mode of transport" value={shipment.mode} />
         <ShipmentDetailInfo name="Type of shipment" value={shipment.type} />

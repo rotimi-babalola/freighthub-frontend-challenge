@@ -13,6 +13,11 @@ export class ShipmentDetailsStore {
     this.shipment = [response.data];
     this.isLoading = false;
   }
+
+  @action
+  async updateName(name: string, shipmentId: string) {
+    const response = await instance.patch(`/shipments/${shipmentId}`, { name });
+  }
 }
 
 export const shipmentDetailsStore = new ShipmentDetailsStore();
