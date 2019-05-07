@@ -15,17 +15,19 @@ export class ShipmentStore {
   @observable searchQuery?: string;
 
   @action
-  getShipments(page: number = 1, limit: number = LIMIT) {
+  async getShipments(page: number = 1, limit: number = LIMIT) {
     this.isLoading = true;
-    instance.get(`/shipments?_page=${page}&_limit=${limit}`).then(response => {
-      this.shipments = response.data.map((el: IShipment) => {
-        return {
-          ...el,
-          total: Number(el.total),
-        };
-      });
-      this.isLoading = false;
+    const response = await instance.get(
+      `/shipments?_page=${page}&_limit=${limit}`,
+    );
+
+    this.shipments = response.data.map((el: IShipment) => {
+      return {
+        ...el,
+        total: Number(el.total),
+      };
     });
+    this.isLoading = false;
   }
 
   @action

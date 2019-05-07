@@ -8,28 +8,19 @@ class Pagination extends React.Component<IPaginationProps, IPaginationState> {
   constructor(props: IPaginationProps) {
     super(props);
     this.state = {
-      currentPage: 1,
-      pageCount: 1,
+      currentPage: 0,
+      pageCount: 0,
     };
   }
 
   componentDidMount() {
-    const startingPage = this.props.startingPage || 1;
-    const pageSize = this.props.pageSize;
-    const pageCount = Math.ceil(this.props.totalRecords / pageSize);
-
     this.setState({
-      currentPage: startingPage,
-      pageCount,
+      currentPage: this.props.currentPage,
+      pageCount: Math.ceil(this.props.totalRecords / this.props.pageSize),
     });
   }
 
-  setCurrentPage = (pageNumber: number) => {
-    this.setState({ currentPage: pageNumber });
-  };
-
-  handlePageChange = (page: number) => (evt: React.SyntheticEvent) => {
-    evt.preventDefault();
+  handlePageChange = (page: number) => {
     const { onPageChanged } = this.props;
 
     const currentPage = Math.max(0, Math.min(page, this.state.pageCount));
@@ -55,7 +46,7 @@ class Pagination extends React.Component<IPaginationProps, IPaginationState> {
         <div
           key={uniqueId()}
           className={`${baseClassName} ${activeClassName}`}
-          onClick={this.handlePageChange(pageNumber)}
+          onClick={() => this.handlePageChange(pageNumber)}
         >
           {pageNumber}
         </div>

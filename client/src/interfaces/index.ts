@@ -7,7 +7,12 @@ import {
 import { ISelectProps } from './select.interface';
 import { IService } from './services.interface';
 import { IShipmentCardProps } from './shipment-card.interface';
-import { IShipment } from './shipment.interface';
+import {
+  IShipment,
+  IShipmentDetailsProps,
+  IShipmentsProps,
+  IShipmentState,
+} from './shipment.interface';
 
 export {
   ICargo,
@@ -18,4 +23,7 @@ export {
   IPaginationProps,
   IPaginationData,
   IPaginationState,
+  IShipmentsProps,
+  IShipmentDetailsProps,
+  IShipmentState,
 };

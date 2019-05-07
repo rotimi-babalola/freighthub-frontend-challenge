@@ -4,14 +4,25 @@ import Pagination from '../components/Pagination';
 import Select from '../components/Select';
 import ShipmentCard from '../components/ShipmentCard';
 import { LIMIT, TOTAL_ITEMS } from '../constants';
-import { IPaginationData } from '../interfaces';
-import { ShipmentStore } from '../stores/shipments.store';
+import {
+  IPaginationData,
+  IShipmentsProps,
+  IShipmentState,
+} from '../interfaces';
 import '../styles/shipments.scss';
 
 @observer
-class Shipments extends React.Component<{ store: ShipmentStore }, {}> {
+class Shipments extends React.Component<IShipmentsProps, IShipmentState> {
+  constructor(props: IShipmentsProps) {
+    super(props);
+    this.state = {
+      currentPage: 1,
+    };
+  }
   onPageChanged = (paginationData: IPaginationData) => {
-    this.props.store.getShipments(paginationData.currentPage);
+    this.setState({ currentPage: paginationData.currentPage }, () =>
+      this.props.store.getShipments(paginationData.currentPage),
+    );
   };
 
   handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,6 +44,7 @@ class Shipments extends React.Component<{ store: ShipmentStore }, {}> {
     ) {
       return <p>No results found</p>;
     }
+
     if (this.props.store.searchQuery) {
       return (
         <div className="shipments-container">
@@ -78,6 +90,7 @@ class Shipments extends React.Component<{ store: ShipmentStore }, {}> {
 
     return (
       <React.Fragment>
+        <h1 className="heading">FreightHub shipments</h1>
         <div className="controls-container">
           <p>Total Items: {TOTAL_ITEMS}</p>
           <Select store={this.props.store} />
@@ -90,13 +103,15 @@ class Shipments extends React.Component<{ store: ShipmentStore }, {}> {
           />
         </div>
         {this.renderShipments()}
-        {this.showPagination() && (
+        {
           <Pagination
             totalRecords={TOTAL_ITEMS}
             pageSize={LIMIT}
             onPageChanged={this.onPageChanged}
+            currentPage={this.state.currentPage}
+            store={this.props.store}
           />
-        )}
+        }
       </React.Fragment>
     );
   }
