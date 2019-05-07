@@ -22,7 +22,10 @@ class Shipments extends React.Component<{ store: ShipmentStore }, {}> {
 
     return (
       <React.Fragment>
-        <Select store={this.props.store} />
+        <div className="controls-container">
+          <Select store={this.props.store} />
+          <input type="text" name="text" id="text" placeholder="Search" />
+        </div>
         <div className="shipments-container">
           {store.shipments.map(shipment => {
             return (

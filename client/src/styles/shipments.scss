@@ -5,6 +5,21 @@
   grid-gap: 10px;
 }
 
+.controls-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 100%;
+  align-items: center;
+}
+
+input[type="text"] {
+  height: 30px;
+  font-size: large;
+  border: 1px solid #707070;
+  padding: 5px;
+}
+
 @media (max-width: 950px) {
   .shipments-container {
     display: grid;
