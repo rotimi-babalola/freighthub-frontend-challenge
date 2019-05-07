@@ -25,6 +25,11 @@ export interface IShipmentState {
   currentPage: number;
 }
 
+export interface IShipmentDetailInfoProps {
+  name: string;
+  value?: string;
+}
+
 export interface IShipmentDetailsProps {
   store: ShipmentDetailsStore;
   match: {

@@ -9,6 +9,7 @@ import { IService } from './services.interface';
 import { IShipmentCardProps } from './shipment-card.interface';
 import {
   IShipment,
+  IShipmentDetailInfoProps,
   IShipmentDetailsProps,
   IShipmentsProps,
   IShipmentState,
@@ -25,5 +26,6 @@ export {
   IPaginationState,
   IShipmentsProps,
   IShipmentDetailsProps,
+  IShipmentDetailInfoProps,
   IShipmentState,
 };
