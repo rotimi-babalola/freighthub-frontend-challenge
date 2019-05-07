@@ -1,6 +1,7 @@
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import Pagination from '../components/Pagination';
+import Select from '../components/Select';
 import ShipmentCard from '../components/ShipmentCard';
 import { LIMIT, TOTAL_ITEMS } from '../constants';
 import { IPaginationData } from '../interfaces';
@@ -21,6 +22,10 @@ class Shipments extends React.Component<{ store: ShipmentStore }, {}> {
 
     return (
       <React.Fragment>
+        <div className="controls-container">
+          <Select store={this.props.store} />
+          <input type="text" name="text" id="text" placeholder="Search" />
+        </div>
         <div className="shipments-container">
           {store.shipments.map(shipment => {
             return (

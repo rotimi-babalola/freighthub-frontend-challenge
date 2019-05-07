@@ -10,7 +10,7 @@ export interface IShipment {
   destination: string;
   origin: string;
   services: IService[];
-  total: string;
+  total: number;
   status: string;
   userId: string;
 }
