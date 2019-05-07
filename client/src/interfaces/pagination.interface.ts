@@ -1,8 +1,11 @@
+import { ShipmentStore } from '../stores/shipments.store';
+
 export interface IPaginationProps {
-  startingPage?: number;
+  currentPage: number;
   pageSize: number;
   totalRecords: number;
   onPageChanged: (paginationData: IPaginationData) => void;
+  store: ShipmentStore;
 }
 
 export interface IPaginationState {

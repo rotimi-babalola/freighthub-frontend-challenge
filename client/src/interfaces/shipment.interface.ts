@@ -21,6 +21,10 @@ export interface IShipmentsProps {
   store: ShipmentStore;
 }
 
+export interface IShipmentState {
+  currentPage: number;
+}
+
 export interface IShipmentDetailsProps {
   store: ShipmentDetailsStore;
   match: {
