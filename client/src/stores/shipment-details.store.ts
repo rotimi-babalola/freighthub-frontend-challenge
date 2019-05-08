@@ -13,7 +13,12 @@ export class ShipmentDetailsStore {
     const response = await instance.get(`/shipments/${shipmentId}`);
     this.setShipment([response.data]);
     this.setShipmentName(response.data.name);
-    this.isLoading = false;
+    this.setLoading(false);
+  }
+
+  @action
+  setLoading(loading: boolean) {
+    this.isLoading = loading;
   }
 
   @action
