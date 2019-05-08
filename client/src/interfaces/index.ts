@@ -1,4 +1,5 @@
 import { ICargo } from './cargo.interface';
+import { IModalProps } from './modal.interface';
 import {
   IPaginationData,
   IPaginationProps,
@@ -30,4 +31,5 @@ export {
   IShipmentDetailInfoProps,
   IShipmentState,
   IShipmentDetailsState,
+  IModalProps,
 };
