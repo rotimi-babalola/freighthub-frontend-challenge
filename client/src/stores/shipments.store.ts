@@ -21,26 +21,39 @@ export class ShipmentStore {
       `/shipments?_page=${page}&_limit=${limit}`,
     );
 
-    this.shipments = response.data.map((el: IShipment) => {
+    const mappedShipments = response.data.map((el: IShipment) => {
       return {
         ...el,
         total: Number(el.total),
       };
     });
+    this.setShipments(mappedShipments);
     this.isLoading = false;
+  }
+
+  @action
+  setShipments(shipments: IShipment[]) {
+    this.shipments = shipments;
+  }
+
+  @action
+  setFilteredShipments(filteredShipments: IShipment[]) {
+    this.filteredShipments = filteredShipments;
   }
 
   @action
   searchShipments(query: string) {
     this.searchQuery = query;
-    this.filteredShipments = this.shipments.filter(item => {
+    const filteredShipments = this.shipments.filter(item => {
       return item.id.toLowerCase().search(query.toLowerCase()) !== -1;
     });
+
+    this.setFilteredShipments(filteredShipments);
   }
 
   @action
   sortShipments(sortByField: string) {
-    this.shipments = this.shipments.slice().sort((a, b) => {
+    const sortedShipments = this.shipments.slice().sort((a, b) => {
       if (a[sortByField] > b[sortByField]) {
         return -1;
       }
@@ -49,6 +62,8 @@ export class ShipmentStore {
       }
       return 0;
     });
+
+    this.setShipments(sortedShipments);
   }
 }
 

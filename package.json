@@ -14,8 +14,7 @@
     "start": "json-server db.json",
     "start:watch": "json-server --watch db.json",
     "start:dev": "npm-run-all -p start:watch client:dev",
-    "test": "jest",
-    "run:test": "npm-run-all -p start:watch test"
+    "test": "jest"
   },
   "husky": {
     "hooks": {
