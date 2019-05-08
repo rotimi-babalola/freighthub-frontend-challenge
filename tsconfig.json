@@ -21,5 +21,6 @@
     },
     "strict": true,
     "experimentalDecorators": true
-  }
+  },
+  "exclude": ["**/*.test.ts", "node_modules"]
 }
