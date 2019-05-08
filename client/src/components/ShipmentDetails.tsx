@@ -34,7 +34,7 @@ class ShipmentDetails extends React.Component<
 
   handleSave = () => {
     const shipmentId = this.props.match.params.shipmentId;
-    this.props.store.updateName(this.state.shipmentName, shipmentId);
+    this.props.store.updateshipmentName(this.state.shipmentName, shipmentId);
     this.setState({
       isShowing: false,
       shipmentName: '',
