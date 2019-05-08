@@ -16,7 +16,7 @@ export class ShipmentStore {
 
   @action
   async getShipments(page: number = 1, limit: number = LIMIT) {
-    this.isLoading = true;
+    this.setLoading(true);
     const response = await instance.get(
       `/shipments?_page=${page}&_limit=${limit}`,
     );
@@ -28,12 +28,17 @@ export class ShipmentStore {
       };
     });
     this.setShipments(mappedShipments);
-    this.isLoading = false;
+    this.setLoading(false);
   }
 
   @action
   setShipments(shipments: IShipment[]) {
     this.shipments = shipments;
+  }
+
+  @action
+  setLoading(loading: boolean) {
+    this.isLoading = loading;
   }
 
   @action

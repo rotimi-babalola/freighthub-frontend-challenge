@@ -10,7 +10,7 @@
       "dom"
     ],
     "removeComments": true,
-    "allowSyntheticDefaultImports": false,
+    "allowSyntheticDefaultImports": true,
     "jsx": "react",
     "allowJs": true,
     "baseUrl": "./",
@@ -22,5 +22,8 @@
     "strict": true,
     "experimentalDecorators": true
   },
-  "exclude": ["**/*.test.ts", "node_modules"]
+  "exclude": [
+    "**/*.test.ts",
+    "node_modules"
+  ],
 }
