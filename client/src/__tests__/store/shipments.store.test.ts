@@ -1,6 +1,6 @@
 import * as expect from 'expect';
-import { shipments } from '../mocks/shipments';
-import { shipmentStore } from '../stores/shipments.store';
+import { shipments } from '../../mocks/shipments';
+import { shipmentStore } from '../../stores/shipments.store';
 
 describe('Shipment Store Tests', () => {
   afterEach(() => {

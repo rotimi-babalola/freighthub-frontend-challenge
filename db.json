@@ -154,7 +154,7 @@
     },
     {
       "id": "S1006",
-      "name": "PO89634, PO27X",
+      "name": "New shipment name",
       "cargo": [
         {
           "type": "Bikes model 27X",
