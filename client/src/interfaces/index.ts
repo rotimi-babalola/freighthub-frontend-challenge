@@ -1,4 +1,5 @@
 import { ICargo } from './cargo.interface';
+import { IModalProps } from './modal.interface';
 import {
   IPaginationData,
   IPaginationProps,
@@ -11,6 +12,7 @@ import {
   IShipment,
   IShipmentDetailInfoProps,
   IShipmentDetailsProps,
+  IShipmentDetailsState,
   IShipmentsProps,
   IShipmentState,
 } from './shipment.interface';
@@ -28,4 +30,6 @@ export {
   IShipmentDetailsProps,
   IShipmentDetailInfoProps,
   IShipmentState,
+  IShipmentDetailsState,
+  IModalProps,
 };

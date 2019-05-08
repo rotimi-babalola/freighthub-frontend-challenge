@@ -41,3 +41,8 @@ export interface IShipmentDetailsProps {
     url: string;
   };
 }
+
+export interface IShipmentDetailsState {
+  isShowing: boolean;
+  shipmentName: string;
+}
